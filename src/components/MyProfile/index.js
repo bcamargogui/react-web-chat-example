@@ -11,7 +11,7 @@ class MyProfile extends React.Component {
         return (
             <Container>
                 <Row>
-                    <Col>Bem-vindo: {username}</Col>
+                    <Col>Seu nome de usuário: {username}</Col>
                 </Row>
             </Container>
         )

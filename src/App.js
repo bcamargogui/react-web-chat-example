@@ -26,31 +26,15 @@ class App extends React.Component {
   socket = socketIOClient(sockerServerUri);
 
   async componentDidMount() {
-    this.provideMessages();
-
     // add myself to list of users
     const { username, avatar } = this.props;
     const user = { name: username, image: avatar };
-    this.addUser(user);
 
     // socket events
     this.socket.emit('guest.new', user);
     this.socket.on('message.show', this.receiveNewMessage);
     this.socket.on('guest.show', this.receiveNewUser);
   }
-
-  interval;
-
-  provideMessages = () => {
-    setInterval(() => {
-      const message = mockedMessages.shift();
-      if (!message) return clearInterval(this.interval);
-      this.props.addMessage(message);
-    }, 1000);
-  }
-
-  addUser = user => this.props.addUser(user);
-
   receiveNewMessage = msg => this.props.addMessage(msg);
 
   receiveNewUser = user => this.props.addUser(user);
@@ -69,7 +53,7 @@ class App extends React.Component {
         <Container>
           <MyProfile />
           <MessageList data={messages} />
-          <InputBar />
+          <InputBar onSubmit={this.onSubmitMessage} />
         </Container>
       </div>
     );

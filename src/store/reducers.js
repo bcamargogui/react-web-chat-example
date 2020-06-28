@@ -3,8 +3,8 @@ import { combineReducers } from 'redux';
 import { AvatarGenerator } from 'random-avatar-generator';
 import { uniqueNamesGenerator, adjectives, colors, animals } from 'unique-names-generator';
 
-// const randomName = uniqueNamesGenerator({ dictionaries: [adjectives, colors, animals] });
-const randomName = 'clean_white_lizard';
+const randomName = uniqueNamesGenerator({ dictionaries: [adjectives, colors, animals] });
+// const randomName = 'clean_white_lizard';
 const generator = new AvatarGenerator();
 
 
