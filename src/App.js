@@ -12,9 +12,6 @@ import { addUser, addMessage } from './store/actions';
 import MyProfile from './components/MyProfile';
 import socketIOClient from "socket.io-client";
 
-const sockerServerUri = 'http://localhost:3001';
-
-
 const mapStateToProps = ({ core: { messages, username, avatar } }) => ({ messages, username, avatar });
 
 const mapActionsToProps = dispatch => ({
@@ -23,7 +20,7 @@ const mapActionsToProps = dispatch => ({
 })
 
 class App extends React.Component {
-  socket = socketIOClient(sockerServerUri);
+  socket = socketIOClient(process.env.REACT_APP_SOCKET_URL);
 
   async componentDidMount() {
     // add myself to list of users
